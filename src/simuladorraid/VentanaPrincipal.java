@@ -40,9 +40,9 @@ public class VentanaPrincipal extends Stage implements EventHandler<Event> {
     private Button raid4;
     private Button raid5;
     private Button raid6;
-    ArrayList<String> archivoCargado;
+    ArrayList<Archivo> archivosCargados;
     public VentanaPrincipal() {
-        this.archivoCargado = new ArrayList<>();
+        this.archivosCargados = new ArrayList<>();
         this.root = new BorderPane();
         Scene scene = new Scene (root,960,542);
         this.setScene(scene);
@@ -62,7 +62,8 @@ public class VentanaPrincipal extends Stage implements EventHandler<Event> {
            if(file!=null)
            {
                this.activarBotones();
-               String nombreDelArhivo = file.getParent() +"\\"+file.getName();
+               String nombreDelArchivo = file.getParent() +"\\"+file.getName();
+               Archivo archivo = new Archivo(file.getName(),nombreDelArchivo);
                FileReader in = null;
                try {
                     in = new FileReader(file);
@@ -74,8 +75,9 @@ public class VentanaPrincipal extends Stage implements EventHandler<Event> {
                for(int i=0;i<datos.length;i++)
                {
                    String aux = (String)datos[i];
-                   this.archivoCargado.add(aux);
+                   archivo.add(aux);
                }
+               this.archivosCargados.add(archivo);
                
                
            }
