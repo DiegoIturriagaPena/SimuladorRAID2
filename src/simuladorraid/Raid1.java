@@ -35,7 +35,7 @@ public class Raid1 {
         }
         
         try {
-        BufferedWriter out = new BufferedWriter(new FileWriter("mirror1" + archivoOriginal.getNombre() ));
+        BufferedWriter out = new BufferedWriter(new FileWriter("RAID1\\RAID1_1\\mirror1" + archivoOriginal.getNombre() + ".txt" ));
             for (int i = 0; i < archivo1.size(); i++) {
                 out.write(archivo1.get(i));
                 out.newLine();
@@ -43,7 +43,7 @@ public class Raid1 {
             out.close();
         } catch (IOException e) {}
         try {
-        BufferedWriter out = new BufferedWriter(new FileWriter("mirror2" +  archivoOriginal.getNombre() ));
+        BufferedWriter out = new BufferedWriter(new FileWriter("RAID2\\RAID1_2\\mirror2" +  archivoOriginal.getNombre() + ".txt" ));
             for (int i = 0; i < archivo2.size(); i++) {
                 out.write(archivo2.get(i));
                 out.newLine();
