@@ -41,7 +41,9 @@ public class VentanaPrincipal extends Stage implements EventHandler<Event> {
     private Button raid5;
     private Button raid6;
     ArrayList<Archivo> archivosCargados;
+    int actual;
     public VentanaPrincipal() {
+        actual =-1;
         this.archivosCargados = new ArrayList<>();
         this.root = new BorderPane();
         Scene scene = new Scene (root,960,542);
@@ -78,10 +80,23 @@ public class VentanaPrincipal extends Stage implements EventHandler<Event> {
                    archivo.add(aux);
                }
                this.archivosCargados.add(archivo);
+               actual = this.archivosCargados.size()-1;// se carga el archivo actual
                
                
            }
         }
+        if(event.getSource() == this.raid0 && event instanceof ActionEvent)
+        {
+            Raid0 raid0= new Raid0();
+            
+        }
+        
+        if(event.getSource() == this.raid1 && event instanceof ActionEvent)
+        {
+            Raid1 raid1 = new Raid1(this.archivosCargados.get(actual));
+            raid1.procesarArchivoRaid1();
+        }
+        
     }
 
     private void doTop() {
