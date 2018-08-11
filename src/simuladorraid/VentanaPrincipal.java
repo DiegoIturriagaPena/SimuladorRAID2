@@ -81,21 +81,36 @@ public class VentanaPrincipal extends Stage implements EventHandler<Event> {
                }
                this.archivosCargados.add(archivo);
                actual = this.archivosCargados.size()-1;// se carga el archivo actual
-               
-               
            }
         }
         if(event.getSource() == this.raid0 && event instanceof ActionEvent)
         {
-
-            Raid0 raid0 = new Raid0(archivo);
+            Raid0 raid0 = new Raid0(this.archivosCargados.get(actual));
             raid0.procesarArchivoRaid0();
+            this.archivosCargados.get(actual).agregarRaidHecho("0");
         }
         
         if(event.getSource() == this.raid1 && event instanceof ActionEvent)
         {
             Raid1 raid1 = new Raid1(this.archivosCargados.get(actual));
             raid1.procesarArchivoRaid1();
+            this.archivosCargados.get(actual).agregarRaidHecho("1");
+        }
+        
+        if(event.getSource() == this.raid5 && event instanceof ActionEvent)
+        {
+            Raid5 raid5 = new Raid5(this.archivosCargados.get(actual));
+            raid5.procesarArchivoRaid5();
+            this.raid5.setDisable(true);
+            this.archivosCargados.get(actual).agregarRaidHecho("5");
+        }
+        
+        if(event.getSource() == this.raid6 && event instanceof ActionEvent)
+        {
+            Raid6 raid6 = new Raid6(this.archivosCargados.get(actual));
+            raid6.procesarArchivoRaid6();
+            this.raid6.setDisable(true);
+            this.archivosCargados.get(actual).agregarRaidHecho("6");
         }
     }
 

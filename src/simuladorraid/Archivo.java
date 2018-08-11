@@ -12,15 +12,16 @@ import java.util.ArrayList;
  * @author Ariel
  */
 public class Archivo {
-    private ArrayList<String> archivoCargado;
     private String nombre;
     private String direccion;
+    private ArrayList<String> archivoCargado;
+    private ArrayList<String> raidsHechos;
    
     public Archivo(String nombre, String direccion) {
-        this.archivoCargado = new ArrayList<>();
         this.nombre = nombre;
         this.direccion = direccion;
         this.archivoCargado = new ArrayList<>();
+        this.raidsHechos = new ArrayList<>();
     }
 
     public String getNombre() {
@@ -54,6 +55,23 @@ public class Archivo {
     public String remove(int index) {
         return archivoCargado.remove(index);
     }
+
+    public int cantidadRaidsHechos() {
+        return raidsHechos.size();
+    }
+
+    public String obtenerRaidHecho(int index) {
+        return raidsHechos.get(index);
+    }
+
+    public boolean agregarRaidHecho(String e) {
+        return raidsHechos.add(e);
+    }
+
+    public String eliminarRaidHecho(int index) {
+        return raidsHechos.remove(index);
+    }
+    
     
     
 }
