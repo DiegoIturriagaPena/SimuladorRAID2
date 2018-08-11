@@ -19,10 +19,10 @@ public class Raid0 {
     private ArrayList<String> archivo2;
     private Archivo archivoOriginal;
 
-    public Raid0(Archivo archivo) {
+    public Raid0(Archivo archivoOriginal) {
         this.archivo1 = new ArrayList<>();
         this.archivo2 = new ArrayList<>();
-        this.archivoOriginal = archivo;
+        this.archivoOriginal = archivoOriginal;
     }
 
     public int cantidadLineasArchivo1() {
@@ -72,7 +72,7 @@ public class Raid0 {
     
     public void CopiarAlDiscoDuro(){
         try {
-            BufferedWriter out = new BufferedWriter(new FileWriter("C:\\Users\\Diego Iturriaga\\Documents\\NetBeansProjects\\SimuladorRAID\\SimuladorRAID2\\RAID0\\RAID0_1\\Striping1" +  archivoOriginal.getNombre() ));
+            BufferedWriter out = new BufferedWriter(new FileWriter("RAID0\\RAID0_1\\Striping1" +  archivoOriginal.getNombre() ));
             for (int i = 0; i < this.archivo1.size(); i++) {
                 out.write(this.archivo1.get(i));
                 out.newLine();
@@ -81,7 +81,7 @@ public class Raid0 {
         } catch (IOException e) {}
         
         try {
-            BufferedWriter out = new BufferedWriter(new FileWriter("C:\\Users\\Diego Iturriaga\\Documents\\NetBeansProjects\\SimuladorRAID\\SimuladorRAID2\\RAID0\\RAID0_2\\Striping2" +  archivoOriginal.getNombre() ));
+            BufferedWriter out = new BufferedWriter(new FileWriter("RAID0\\RAID0_2\\Striping2" +  archivoOriginal.getNombre() ));
             for (int i = 0; i < this.archivo2.size(); i++) {
                 out.write(this.archivo2.get(i));
                 out.newLine();

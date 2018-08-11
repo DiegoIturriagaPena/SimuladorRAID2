@@ -17,7 +17,6 @@ public class Archivo {
     private String direccion;
    
     public Archivo(String nombre, String direccion) {
-        this.archivoCargado = new ArrayList<>();
         this.nombre = nombre;
         this.direccion = direccion;
         this.archivoCargado = new ArrayList<>();
