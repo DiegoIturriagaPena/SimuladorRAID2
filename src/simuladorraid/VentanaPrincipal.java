@@ -252,6 +252,7 @@ public class VentanaPrincipal extends Stage implements EventHandler<Event> {
                     Object arg2) {
 
                     System.out.println("" + (String)ov.getValue());
+                    buscarArchivo((String)ov.getValue());
                     
                 }
             }    
@@ -267,6 +268,41 @@ public class VentanaPrincipal extends Stage implements EventHandler<Event> {
             if(nombreArchivo.compareTo(this.archivosCargados.get(i).getNombre())==0)
             {
                 this.actual=i;
+            }
+        }
+        this.activarBotones();
+        this.deshabilitarRaidHechos();
+    }
+    
+    public void deshabilitarRaidHechos()
+    {
+        Archivo archivo = this.archivosCargados.get(actual);
+        for(int i=0; i<archivo.cantidadRaidsHechos();i++)
+        {
+            String aux = archivo.obtenerRaidHecho(i);
+            switch (aux)
+            {
+                case "0":
+                    this.raid0.setDisable(true);
+                    break;
+                case "1":
+                    this.raid1.setDisable(true);
+                    break;
+                case "2":
+                    this.raid2.setDisable(true);
+                    break;
+                case "3":
+                    this.raid3.setDisable(true);
+                    break;
+                case "4":
+                    this.raid4.setDisable(true);
+                    break;
+                case "5":
+                    this.raid5.setDisable(true);
+                    break;
+                case "6":
+                    this.raid6.setDisable(true);
+                    break;
             }
         }
     }
