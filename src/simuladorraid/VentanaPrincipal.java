@@ -62,7 +62,6 @@ public class VentanaPrincipal extends Stage implements EventHandler<Event> {
            if(file!=null)
            {
                this.activarBotones();
-               String nombreDelArhivo = file.getParent() +"\\"+file.getName();
                FileReader in = null;
                try {
                     in = new FileReader(file);
@@ -76,8 +75,6 @@ public class VentanaPrincipal extends Stage implements EventHandler<Event> {
                    String aux = (String)datos[i];
                    this.archivoCargado.add(aux);
                }
-               
-               
            }
         }
     }
