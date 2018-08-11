@@ -63,11 +63,11 @@ public class VentanaPrincipal extends Stage implements EventHandler<Event> {
            File file = fileChooser.showOpenDialog(this); 
            if(file!=null)
            {
-               this.activarBotones();
-               String nombreDelArchivo = file.getParent() +"\\"+file.getName();
-               Archivo archivo = new Archivo(file.getName(),nombreDelArchivo);
-               FileReader in = null;
-               try {
+                this.activarBotones();
+                String nombreDelArchivo = file.getParent() +"\\"+file.getName();
+                Archivo archivo = new Archivo(file.getName(),nombreDelArchivo);
+                FileReader in = null;
+                try {
                     in = new FileReader(file);
                 } catch (FileNotFoundException ex) {
                     Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
@@ -87,8 +87,9 @@ public class VentanaPrincipal extends Stage implements EventHandler<Event> {
         }
         if(event.getSource() == this.raid0 && event instanceof ActionEvent)
         {
-            Raid0 raid0= new Raid0();
-            
+
+            Raid0 raid0 = new Raid0(archivo);
+            raid0.procesarArchivoRaid0();
         }
         
         if(event.getSource() == this.raid1 && event instanceof ActionEvent)
@@ -96,7 +97,6 @@ public class VentanaPrincipal extends Stage implements EventHandler<Event> {
             Raid1 raid1 = new Raid1(this.archivosCargados.get(actual));
             raid1.procesarArchivoRaid1();
         }
-        
     }
 
     private void doTop() {

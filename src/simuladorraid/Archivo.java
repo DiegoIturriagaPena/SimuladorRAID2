@@ -20,6 +20,7 @@ public class Archivo {
         this.archivoCargado = new ArrayList<>();
         this.nombre = nombre;
         this.direccion = direccion;
+        this.archivoCargado = new ArrayList<>();
     }
 
     public String getNombre() {
