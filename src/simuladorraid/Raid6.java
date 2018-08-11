@@ -80,7 +80,7 @@ public class Raid6 {
 
     private void CopiarAlDiscoDuro1() {
         try {
-            BufferedWriter out = new BufferedWriter(new FileWriter("RAID6\\RAID6_1\\FullFile" +  archivoOriginal.getNombre() ));
+            BufferedWriter out = new BufferedWriter(new FileWriter("RAID6\\RAID6_1\\FullFile" +  archivoOriginal.getNombre() + ".txt"));
             for (int i = 0; i < this.archivo1.size(); i++) {
                 out.write(this.archivo1.get(i));
                 out.newLine();
@@ -88,7 +88,7 @@ public class Raid6 {
             out.close();
         } catch (IOException e) {}
         try {
-            BufferedWriter out = new BufferedWriter(new FileWriter("RAID6\\RAID6_2\\Third1" +  archivoOriginal.getNombre() ));
+            BufferedWriter out = new BufferedWriter(new FileWriter("RAID6\\RAID6_2\\Third1" +  archivoOriginal.getNombre() + ".txt"));
             for (int i = 0; i < this.archivo2.size(); i++) {
                 out.write(this.archivo2.get(i));
                 out.newLine();
@@ -96,7 +96,7 @@ public class Raid6 {
             out.close();
         } catch (IOException e) {}
         try {
-            BufferedWriter out = new BufferedWriter(new FileWriter("RAID6\\RAID6_3\\Third2" +  archivoOriginal.getNombre() ));
+            BufferedWriter out = new BufferedWriter(new FileWriter("RAID6\\RAID6_3\\Third2" +  archivoOriginal.getNombre() + ".txt"));
             for (int i = 0; i < this.archivo3.size(); i++) {
                 out.write(this.archivo3.get(i));
                 out.newLine();
@@ -104,7 +104,7 @@ public class Raid6 {
             out.close();
         } catch (IOException e) {}
         try {
-            BufferedWriter out = new BufferedWriter(new FileWriter("RAID6\\RAID6_4\\Third3" +  archivoOriginal.getNombre() ));
+            BufferedWriter out = new BufferedWriter(new FileWriter("RAID6\\RAID6_4\\Third3" +  archivoOriginal.getNombre() + ".txt"));
             for (int i = 0; i < this.archivo4.size(); i++) {
                 out.write(this.archivo4.get(i));
                 out.newLine();
@@ -140,7 +140,7 @@ public class Raid6 {
 
     private void CopiarAlDiscoDuro2() {
         try {
-            BufferedWriter out = new BufferedWriter(new FileWriter("RAID6\\RAID6_1\\Third1" +  archivoOriginal.getNombre() ));
+            BufferedWriter out = new BufferedWriter(new FileWriter("RAID6\\RAID6_1\\Third1" +  archivoOriginal.getNombre() + ".txt"));
             for (int i = 0; i < this.archivo1.size(); i++) {
                 out.write(this.archivo1.get(i));
                 out.newLine();
@@ -148,7 +148,7 @@ public class Raid6 {
             out.close();
         } catch (IOException e) {}
         try {
-            BufferedWriter out = new BufferedWriter(new FileWriter("RAID6\\RAID6_2\\FullFile" +  archivoOriginal.getNombre() ));
+            BufferedWriter out = new BufferedWriter(new FileWriter("RAID6\\RAID6_2\\FullFile" +  archivoOriginal.getNombre() + ".txt"));
             for (int i = 0; i < this.archivo2.size(); i++) {
                 out.write(this.archivo2.get(i));
                 out.newLine();
@@ -156,7 +156,7 @@ public class Raid6 {
             out.close();
         } catch (IOException e) {}
         try {
-            BufferedWriter out = new BufferedWriter(new FileWriter("RAID6\\RAID6_3\\Third2" +  archivoOriginal.getNombre() ));
+            BufferedWriter out = new BufferedWriter(new FileWriter("RAID6\\RAID6_3\\Third2" +  archivoOriginal.getNombre() + ".txt"));
             for (int i = 0; i < this.archivo3.size(); i++) {
                 out.write(this.archivo3.get(i));
                 out.newLine();
@@ -164,7 +164,7 @@ public class Raid6 {
             out.close();
         } catch (IOException e) {}
         try {
-            BufferedWriter out = new BufferedWriter(new FileWriter("RAID6\\RAID6_4\\Third3" +  archivoOriginal.getNombre() ));
+            BufferedWriter out = new BufferedWriter(new FileWriter("RAID6\\RAID6_4\\Third3" +  archivoOriginal.getNombre() + ".txt"));
             for (int i = 0; i < this.archivo4.size(); i++) {
                 out.write(this.archivo4.get(i));
                 out.newLine();
@@ -200,7 +200,7 @@ public class Raid6 {
 
     private void CopiarAlDiscoDuro3() {
         try {
-            BufferedWriter out = new BufferedWriter(new FileWriter("RAID6\\RAID6_1\\Third1" +  archivoOriginal.getNombre() ));
+            BufferedWriter out = new BufferedWriter(new FileWriter("RAID6\\RAID6_1\\Third1" +  archivoOriginal.getNombre() + ".txt"));
             for (int i = 0; i < this.archivo1.size(); i++) {
                 out.write(this.archivo1.get(i));
                 out.newLine();
@@ -208,7 +208,7 @@ public class Raid6 {
             out.close();
         } catch (IOException e) {}
         try {
-            BufferedWriter out = new BufferedWriter(new FileWriter("RAID6\\RAID6_2\\Third2" +  archivoOriginal.getNombre() ));
+            BufferedWriter out = new BufferedWriter(new FileWriter("RAID6\\RAID6_2\\Third2" +  archivoOriginal.getNombre() + ".txt"));
             for (int i = 0; i < this.archivo2.size(); i++) {
                 out.write(this.archivo2.get(i));
                 out.newLine();
@@ -216,7 +216,7 @@ public class Raid6 {
             out.close();
         } catch (IOException e) {}
         try {
-            BufferedWriter out = new BufferedWriter(new FileWriter("RAID6\\RAID6_3\\FullFile" +  archivoOriginal.getNombre() ));
+            BufferedWriter out = new BufferedWriter(new FileWriter("RAID6\\RAID6_3\\FullFile" +  archivoOriginal.getNombre() + ".txt"));
             for (int i = 0; i < this.archivo3.size(); i++) {
                 out.write(this.archivo3.get(i));
                 out.newLine();
@@ -224,7 +224,7 @@ public class Raid6 {
             out.close();
         } catch (IOException e) {}
         try {
-            BufferedWriter out = new BufferedWriter(new FileWriter("RAID6\\RAID6_4\\Third3" +  archivoOriginal.getNombre() ));
+            BufferedWriter out = new BufferedWriter(new FileWriter("RAID6\\RAID6_4\\Third3" +  archivoOriginal.getNombre() + ".txt"));
             for (int i = 0; i < this.archivo4.size(); i++) {
                 out.write(this.archivo4.get(i));
                 out.newLine();
@@ -260,7 +260,7 @@ public class Raid6 {
 
     private void CopiarAlDiscoDuro4() {
         try {
-            BufferedWriter out = new BufferedWriter(new FileWriter("RAID6\\RAID6_1\\Third1" +  archivoOriginal.getNombre() ));
+            BufferedWriter out = new BufferedWriter(new FileWriter("RAID6\\RAID6_1\\Third1" +  archivoOriginal.getNombre() + ".txt"));
             for (int i = 0; i < this.archivo1.size(); i++) {
                 out.write(this.archivo1.get(i));
                 out.newLine();
@@ -268,7 +268,7 @@ public class Raid6 {
             out.close();
         } catch (IOException e) {}
         try {
-            BufferedWriter out = new BufferedWriter(new FileWriter("RAID6\\RAID6_2\\Third2" +  archivoOriginal.getNombre() ));
+            BufferedWriter out = new BufferedWriter(new FileWriter("RAID6\\RAID6_2\\Third2" +  archivoOriginal.getNombre() + ".txt"));
             for (int i = 0; i < this.archivo2.size(); i++) {
                 out.write(this.archivo2.get(i));
                 out.newLine();
@@ -276,7 +276,7 @@ public class Raid6 {
             out.close();
         } catch (IOException e) {}
         try {
-            BufferedWriter out = new BufferedWriter(new FileWriter("RAID6\\RAID6_3\\Third3" +  archivoOriginal.getNombre() ));
+            BufferedWriter out = new BufferedWriter(new FileWriter("RAID6\\RAID6_3\\Third3" +  archivoOriginal.getNombre() + ".txt"));
             for (int i = 0; i < this.archivo3.size(); i++) {
                 out.write(this.archivo3.get(i));
                 out.newLine();
@@ -284,7 +284,7 @@ public class Raid6 {
             out.close();
         } catch (IOException e) {}
         try {
-            BufferedWriter out = new BufferedWriter(new FileWriter("RAID6\\RAID6_4\\FullFile" +  archivoOriginal.getNombre() ));
+            BufferedWriter out = new BufferedWriter(new FileWriter("RAID6\\RAID6_4\\FullFile" +  archivoOriginal.getNombre() + ".txt"));
             for (int i = 0; i < this.archivo4.size(); i++) {
                 out.write(this.archivo4.get(i));
                 out.newLine();
