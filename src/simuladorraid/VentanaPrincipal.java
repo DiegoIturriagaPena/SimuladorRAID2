@@ -40,9 +40,9 @@ public class VentanaPrincipal extends Stage implements EventHandler<Event> {
     private Button raid4;
     private Button raid5;
     private Button raid6;
-    ArrayList<String> archivoCargado;
+    ArrayList<Archivo> archivosCargados;
     public VentanaPrincipal() {
-        this.archivoCargado = new ArrayList<>();
+        this.archivosCargados = new ArrayList<>();
         this.root = new BorderPane();
         Scene scene = new Scene (root,960,542);
         this.setScene(scene);
@@ -62,7 +62,8 @@ public class VentanaPrincipal extends Stage implements EventHandler<Event> {
            if(file!=null)
            {
                this.activarBotones();
-               String nombreDelArhivo = file.getParent() +"\\"+file.getName();
+               String nombreDelArchivo = file.getParent() +"\\"+file.getName();
+               Archivo archivo = new Archivo(file.getName(),nombreDelArchivo);
                FileReader in = null;
                try {
                     in = new FileReader(file);
@@ -74,8 +75,9 @@ public class VentanaPrincipal extends Stage implements EventHandler<Event> {
                for(int i=0;i<datos.length;i++)
                {
                    String aux = (String)datos[i];
-                   this.archivoCargado.add(aux);
+                   archivo.add(aux);
                }
+               this.archivosCargados.add(archivo);
                
                
            }
@@ -97,18 +99,25 @@ public class VentanaPrincipal extends Stage implements EventHandler<Event> {
         botones.setSpacing(10);
         botones.setPadding(new Insets(5,5,5,10));
         this.raid0 = new Button("Raid 0");
+        this.raid0.addEventHandler(EventType.ROOT, this);
         this.raid0.setDisable(true);
         this.raid1 = new Button("Raid 1");
+        this.raid1.addEventHandler(EventType.ROOT, this);
         this.raid1.setDisable(true);
         this.raid2 = new Button("Raid 2");
+        this.raid2.addEventHandler(EventType.ROOT, this);
         this.raid2.setDisable(true);
         this.raid3 = new Button("Raid 3");
+        this.raid3.addEventHandler(EventType.ROOT, this);
         this.raid3.setDisable(true);
         this.raid4 = new Button("Raid 4");
+        this.addEventHandler(EventType.ROOT, this);
         this.raid4.setDisable(true);
         this.raid5 = new Button("Raid 5");
+        this.raid5.addEventHandler(EventType.ROOT, this);
         this.raid5.setDisable(true);
         this.raid6 = new Button("Raid 6");
+        this.raid6.addEventHandler(EventType.ROOT, this);
         this.raid6.setDisable(true);
         botones.getChildren().addAll(this.raid0,this.raid1,this.raid2,this.raid3,this.raid4,this.raid5,this.raid6);
         this.root.setCenter(botones);
