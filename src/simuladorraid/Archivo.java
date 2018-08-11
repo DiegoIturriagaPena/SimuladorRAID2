@@ -5,16 +5,17 @@
  */
 package simuladorraid;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author Ariel
  */
-public class Archivo {
+public class Archivo implements Serializable{
+    private ArrayList<String> archivoCargado;
     private String nombre;
     private String direccion;
-    private ArrayList<String> archivoCargado;
     private ArrayList<String> raidsHechos;
    
     public Archivo(String nombre, String direccion) {

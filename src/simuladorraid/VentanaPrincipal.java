@@ -6,13 +6,24 @@
 package simuladorraid;
 
 
+import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -20,11 +31,14 @@ import javafx.event.EventType;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.ToolBar;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
+import javax.swing.event.ChangeEvent;
 
 /**
  *
@@ -40,17 +54,26 @@ public class VentanaPrincipal extends Stage implements EventHandler<Event> {
     private Button raid4;
     private Button raid5;
     private Button raid6;
+    private ComboBox archivos;
     ArrayList<Archivo> archivosCargados;
     int actual;
     public VentanaPrincipal() {
         actual =-1;
         this.archivosCargados = new ArrayList<>();
+        this.desarializar();
         this.root = new BorderPane();
         Scene scene = new Scene (root,960,542);
         this.setScene(scene);
         this.doTop();
         this.doCenter();
-        this.setTitle("Raid Simulato: arcade triple omega mata pulgas y garrapatas ");
+        this.setTitle("Raid Simulator: arcade triple omega mata pulgas y garrapatas ");
+        this.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            public void handle(WindowEvent we) {
+                serializar();
+          }
+        });
+       
+        System.out.println("" +this.archivosCargados.size());
     }
     
     
@@ -65,7 +88,9 @@ public class VentanaPrincipal extends Stage implements EventHandler<Event> {
            {
                 this.activarBotones();
                 String nombreDelArchivo = file.getParent() +"\\"+file.getName();
-                Archivo archivo = new Archivo(file.getName(),nombreDelArchivo);
+                String[] nombreDelArchivo2 = file.getName().split("\\.");
+                System.out.println("" + nombreDelArchivo2[0]);
+                Archivo archivo = new Archivo(nombreDelArchivo2[0],nombreDelArchivo);
                 FileReader in = null;
                 try {
                     in = new FileReader(file);
@@ -85,8 +110,10 @@ public class VentanaPrincipal extends Stage implements EventHandler<Event> {
         }
         if(event.getSource() == this.raid0 && event instanceof ActionEvent)
         {
+
             Raid0 raid0 = new Raid0(this.archivosCargados.get(actual));
             raid0.procesarArchivoRaid0();
+            this.raid0.setDisable(true);
             this.archivosCargados.get(actual).agregarRaidHecho("0");
         }
         
@@ -94,6 +121,7 @@ public class VentanaPrincipal extends Stage implements EventHandler<Event> {
         {
             Raid1 raid1 = new Raid1(this.archivosCargados.get(actual));
             raid1.procesarArchivoRaid1();
+            this.raid1.setDisable(true);
             this.archivosCargados.get(actual).agregarRaidHecho("1");
         }
         
@@ -149,7 +177,9 @@ public class VentanaPrincipal extends Stage implements EventHandler<Event> {
         this.raid6 = new Button("Raid 6");
         this.raid6.addEventHandler(EventType.ROOT, this);
         this.raid6.setDisable(true);
-        botones.getChildren().addAll(this.raid0,this.raid1,this.raid2,this.raid3,this.raid4,this.raid5,this.raid6);
+        this.rellenarComboBox();
+       
+        botones.getChildren().addAll(this.raid0,this.raid1,this.raid2,this.raid3,this.raid4,this.raid5,this.raid6,this.archivos);
         this.root.setCenter(botones);
         
         
@@ -167,4 +197,81 @@ public class VentanaPrincipal extends Stage implements EventHandler<Event> {
         this.raid6.setDisable(false);
     }
     
+    public void serializar()
+    {
+        try {
+            FileOutputStream fileOut =
+            new FileOutputStream("respaldo\\respaldo.ser");
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            out.reset();
+            out.writeObject(this.archivosCargados);
+            out.close();
+            fileOut.close();
+            System.out.printf("Datos serializados en \\respaldo\\respaldo.ser");
+        }catch (IOException i) {
+            i.printStackTrace();
+        }
+    }
+    public void desarializar()
+    {
+        try {
+            FileInputStream fileIn = new FileInputStream("respaldo\\respaldo.ser");
+            ObjectInputStream in = new ObjectInputStream(fileIn);
+            System.out.println("" + this.archivosCargados.size());
+            Object nuevo = in.readObject();
+            ArrayList<Archivo> new1 = (ArrayList)nuevo;
+            this.archivosCargados = (ArrayList)nuevo;
+        }catch (IOException i) {
+            //i.printStackTrace();
+            return;
+        }catch (ClassNotFoundException c) {
+            System.out.println("Employee class not found");
+            c.printStackTrace();
+            return;
+        }catch(Exception e)
+        {
+            System.out.println("" + e.getMessage());
+        }
+        
+    }
+    
+    public void rellenarComboBox()
+    {
+        ObservableList<SimpleStringProperty> nombres = FXCollections.observableArrayList();
+        this.archivos = new ComboBox();
+        for(int i =0;i<this.archivosCargados.size();i++)
+        {
+            SimpleStringProperty aux = new SimpleStringProperty(this.archivosCargados.get(i).getNombre());
+            this.archivos.getItems().add(aux.getValue());
+            
+        }
+        this.archivos.valueProperty().addListener(new ChangeListener() {
+            @SuppressWarnings("rawtypes")
+            @Override
+            public void changed(ObservableValue ov, Object arg1,
+                    Object arg2) {
+
+                    System.out.println("" + (String)ov.getValue());
+                    
+                }
+            }    
+        );
+      
+        
+    }
+    
+    public void buscarArchivo(String nombreArchivo)
+    {
+        for(int i=0;i<this.archivosCargados.size();i++)
+        {
+            if(nombreArchivo.compareTo(this.archivosCargados.get(i).getNombre())==0)
+            {
+                this.actual=i;
+            }
+        }
+    }
+
+  
+
+   
 }
