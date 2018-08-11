@@ -19,6 +19,7 @@ public class Archivo {
     public Archivo(String nombre, String direccion) {
         this.nombre = nombre;
         this.direccion = direccion;
+        this.archivoCargado = new ArrayList<>();
     }
 
     public String getNombre() {
