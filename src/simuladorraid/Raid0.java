@@ -5,10 +5,16 @@
  */
 package simuladorraid;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -100,5 +106,26 @@ public class Raid0 {
         for (int i = 0; i < this.cantidadLineasArchivo2(); i++) {
             System.out.println(this.obtenerLineaArchivo2(i));
         }
+    }
+    
+    private ArrayList<String> abrirArchivo(String nombre)
+    {
+        ArrayList<String> lineas = null;
+        File file = new File ("RAID0\\" +nombre);
+        FileReader in = null;
+        try {
+            in = new FileReader(file);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        BufferedReader buffer = new BufferedReader(in);
+        Object[] datos = buffer.lines().toArray();
+        for(int i=0;i<datos.length;i++)
+        {
+            String aux = (String)datos[i];
+            lineas.add(aux);
+        }
+        return lineas;
     }
 }
