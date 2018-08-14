@@ -138,21 +138,44 @@ public class VentanaPrincipal extends Stage implements EventHandler<Event> {
         }
         if(event.getSource() == this.raid0 && event instanceof ActionEvent)
         {
-
-            Raid0 raid0 = new Raid0(this.archivosCargados.get(actual));
-            raid0.procesarArchivoRaid0();
-            this.raid0.setDisable(true);
-            this.mostrar0.setDisable(false);
-            this.archivosCargados.get(actual).agregarRaidHecho("0");
+            if(this.archivosCargados.get(actual).size()>=4)
+            {
+                Raid0 raid0 = new Raid0(this.archivosCargados.get(actual));
+                raid0.procesarArchivoRaid0();
+                this.raid0.setDisable(true);
+                this.mostrar0.setDisable(false);
+                this.archivosCargados.get(actual).agregarRaidHecho("0");
+            }
+            else
+            {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("Error");
+                alert.setContentText("Archivo con menos de 4 lineas");
+                alert.showAndWait();
+            }
+            
         }
         
         if(event.getSource() == this.raid1 && event instanceof ActionEvent)
         {
-            Raid1 raid1 = new Raid1(this.archivosCargados.get(actual));
-            raid1.procesarArchivoRaid1();
-            this.raid1.setDisable(true);
-            this.mostrar1.setDisable(false);
-            this.archivosCargados.get(actual).agregarRaidHecho("1");
+            if(this.archivosCargados.get(actual).size()>=2)
+            {
+                Raid1 raid1 = new Raid1(this.archivosCargados.get(actual));
+                raid1.procesarArchivoRaid1();
+                this.raid1.setDisable(true);
+                this.mostrar1.setDisable(false);
+                this.archivosCargados.get(actual).agregarRaidHecho("1");
+            }
+            else
+            {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("Error");
+                alert.setContentText("Archivo con menos de 2 lineas");
+                alert.showAndWait();
+            }
+            
         }
         
         if(event.getSource() == this.raid2 && event instanceof ActionEvent)
@@ -166,29 +189,65 @@ public class VentanaPrincipal extends Stage implements EventHandler<Event> {
         
         if(event.getSource() == this.raid3 && event instanceof ActionEvent)
         {
-            Raid3 raid3 = new Raid3(this.archivosCargados.get(actual));
-            raid3.procesarArchivoRaid3();
-            this.raid3.setDisable(true);
-            this.mostrar3.setDisable(false);
-            this.archivosCargados.get(actual).agregarRaidHecho("3");
+            if(this.archivosCargados.get(actual).size()>=2)
+            {
+                Raid3 raid3 = new Raid3(this.archivosCargados.get(actual));
+                raid3.procesarArchivoRaid3();
+                this.raid3.setDisable(true);
+                this.mostrar3.setDisable(false);
+                this.archivosCargados.get(actual).agregarRaidHecho("3");
+            }
+            else
+            {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("Error");
+                alert.setContentText("Archivo con menos de 2 lineas");
+                alert.showAndWait();
+            }
+            
         }
         
         if(event.getSource() == this.raid4 && event instanceof ActionEvent)
         {
-            Raid4 raid4 = new Raid4(this.archivosCargados.get(actual));
-            raid4.procesarArchivoRaid4();
-            this.raid4.setDisable(true);
-            this.mostrar4.setDisable(false);
-            this.archivosCargados.get(actual).agregarRaidHecho("4");
+            if(this.archivosCargados.get(actual).size()>=4)
+            {
+                Raid4 raid4 = new Raid4(this.archivosCargados.get(actual));
+                raid4.procesarArchivoRaid4();
+                this.raid4.setDisable(true);
+                this.mostrar4.setDisable(false);
+                this.archivosCargados.get(actual).agregarRaidHecho("4");
+            }
+            else
+            {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("Error");
+                alert.setContentText("Archivo con menos de 4 lineas");
+                alert.showAndWait();
+            }
+            
         }
         
         if(event.getSource() == this.raid5 && event instanceof ActionEvent)
         {
-            Raid5 raid5 = new Raid5(this.archivosCargados.get(actual));
-            raid5.procesarArchivoRaid5();
-            this.raid5.setDisable(true);
-            this.mostrar5.setDisable(false);
-            this.archivosCargados.get(actual).agregarRaidHecho("5");
+            if(this.archivosCargados.get(actual).size()>=3)
+            {
+                Raid5 raid5 = new Raid5(this.archivosCargados.get(actual));
+                raid5.procesarArchivoRaid5();
+                this.raid5.setDisable(true);
+                this.mostrar5.setDisable(false);
+                this.archivosCargados.get(actual).agregarRaidHecho("5");
+            }
+            else
+            {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("Error");
+                alert.setContentText("Archivo con menos de 3 lineas");
+                alert.showAndWait();
+            }
+            
         }
         
         if(event.getSource() == this.raid6 && event instanceof ActionEvent)
