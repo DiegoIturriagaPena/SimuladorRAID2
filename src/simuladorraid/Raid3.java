@@ -150,6 +150,17 @@ public class Raid3 {
         return true;
     }
     
+    private void sobreescribirParidad(Archivo archivo, ArrayList<String> paridad){
+        try {
+            BufferedWriter out = new BufferedWriter(new FileWriter("RAID3\\RAID3_P\\Paridad" +  archivo.getNombre() + ".txt"));
+            for (int i = 0; i < paridad.size(); i++) {
+                out.write(paridad.get(i));
+                out.newLine();
+            }
+            out.close();
+        } catch (IOException e) {}
+    }
+    
     public String reconstruir(Archivo archivo){ 
         String textoReconstruido = "";
         ArrayList<String> bytes1 = new ArrayList<>();
@@ -171,8 +182,7 @@ public class Raid3 {
                     textoReconstruido = textoReconstruido + bytes1.get(i)+"\n";
                     cont++;
                 }
-            }
-            while(cont<archivoOriginal.size()){
+                
                 for (int i = 0; i < bytes2.size(); i++) {
                     if(!archivoOriginal.get(cont).equals(bytes2.get(i))){
                         paridad.remove(i);
@@ -182,14 +192,16 @@ public class Raid3 {
                     cont++;
                 }
             }
-            if(this.verificarParidad(paridad)){
+
+            if(this.verificarParidad(paridad) && cont==archivoOriginal.size()){
                 return textoReconstruido;
             }
             else{
+                this.sobreescribirParidad(archivo, paridad);
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error");
                 alert.setHeaderText("Error");
-                alert.setContentText("La Paridad indica errores en los segmentos.");
+                alert.setContentText("La Paridad indica errores en los bytes.");
                 alert.showAndWait();
             }
             
