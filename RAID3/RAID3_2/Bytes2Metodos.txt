@@ -1,5 +1,0 @@
-﻿ObtenerRolDeUsuario PatricioQuezada Proyecto.cs	
-ObtenerNumRequisito DiegoIturriaga Requisito.cs
-obtenerRequisito ProyectoController.cs
-ObtenerIdPorRut ProyectoController.cs
-obtenerActores JoseNu�ez Proye
