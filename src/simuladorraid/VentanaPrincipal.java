@@ -95,6 +95,8 @@ public class VentanaPrincipal extends Stage implements EventHandler<Event> {
         if(event.getSource() == this.Abrir && event instanceof ActionEvent)
         {
            FileChooser fileChooser = new FileChooser();
+           FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
+           fileChooser.getExtensionFilters().add(extFilter);
            fileChooser.setTitle("Abrir Archivo"); 
            File file = fileChooser.showOpenDialog(this); 
            if(file!=null)
@@ -102,7 +104,6 @@ public class VentanaPrincipal extends Stage implements EventHandler<Event> {
                 this.activarBotones();
                 String nombreDelArchivo = file.getParent() +"\\"+file.getName();
                 String[] nombreDelArchivo2 = file.getName().split("\\.");
-                System.out.println("" + nombreDelArchivo2[0]);
                 Archivo archivo = new Archivo(nombreDelArchivo2[0],nombreDelArchivo);
                 FileReader in = null;
                 try {
