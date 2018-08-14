@@ -72,12 +72,14 @@ public class Raid1 {
             for (int i = 0; i < Mirror1.size(); i++) {
                 textoReconstruido = textoReconstruido + Mirror1.get(i)+"\n";
             }
+            return textoReconstruido;
         }catch(NullPointerException e1){
             try{
                 Mirror2 = this.abrirArchivo("RAID1_2\\Mirror2"+nombreArchivo+".txt");
                 for (int i = 0; i < Mirror2.size(); i++) {
                     textoReconstruido = textoReconstruido + Mirror2.get(i)+"\n";
                 }
+                return textoReconstruido;
             }
             catch(NullPointerException e2){
                 Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -88,7 +90,7 @@ public class Raid1 {
             }
         }
 
-        return textoReconstruido;
+        return "";
     }
     
     private ArrayList<String> abrirArchivo(String nombre)

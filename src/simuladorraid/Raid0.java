@@ -201,6 +201,7 @@ public class Raid0 {
             for (int i = 0; i < Striping4.size(); i++) {
                 textoReconstruido = textoReconstruido + Striping4.get(i)+"\n";
             }
+            return textoReconstruido;
         }catch(NullPointerException e){
             Alert alert = new Alert(AlertType.ERROR);
             alert.setTitle("Error");
@@ -209,7 +210,7 @@ public class Raid0 {
             alert.showAndWait();
         }
 
-        return textoReconstruido;
+        return "";
     }
     
     private ArrayList<String> abrirArchivo(String nombre)
