@@ -1,47 +1,23 @@
 !
+version 12.2
 no service timestamps log datetime msec
+no service timestamps debug datetime msec
 no service password-encryption
+!
 hostname ISP-R2
+!
+!
 !
 enable secret 5 $1$mERr$9cTjUIEqNGurQiFU.ZeCi1
 !
 !
 !
+!
+!
+!
+no ip cef
 no ipv6 cef
 !
 !
 !
 !
-!
-!
-!
-!
-!
-interface FastEthernet0/0
- duplex auto
-!
- no ip address
- speed auto
-!
- ip address 209.165.201.9 255.255.255.252
-interface Serial3/0
- clock rate 64000
-interface FastEthernet4/0
- shutdown
-interface FastEthernet5/0
- shutdown
-ip classless
-ip flow-export version 9
-!
-banner motd 
-!!!ACCESO RESTRINGIDO!!!
-
-!
-!
- password cisco
-!
-!
- password cisco
-!
-!
-

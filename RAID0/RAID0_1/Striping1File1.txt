@@ -40,17 +40,3 @@
           <link rel="icon" type="image/png" sizes="36x36" href="https://static1-ssl.dmcdn.net/images/neon/favicons/android-icon-36x36.png.vf806ca4ed0deed812" />
         <link rel="icon" type="image/png" sizes="48x48" href="https://static1-ssl.dmcdn.net/images/neon/favicons/android-icon-48x48.png.vff6697df31d407f12" />
         <link rel="icon" type="image/png" sizes="72x72" href="https://static1-ssl.dmcdn.net/images/neon/favicons/android-icon-72x72.png.v2889956f2d0527132" />
-        <link rel="icon" type="image/png" sizes="96x96" href="https://static1-ssl.dmcdn.net/images/neon/favicons/android-icon-96x96.png.vf8b7514d12dda64c2" />
-        <link rel="icon" type="image/png" sizes="144x144" href="https://static1-ssl.dmcdn.net/images/neon/favicons/android-icon-144x144.png.v6a71dd620bab68902" />
-        <link rel="icon" type="image/png" sizes="192x192" href="https://static1-ssl.dmcdn.net/images/neon/favicons/android-icon-192x192.png.v55f7db2bb72c483b2" />
-    <link rel="manifest" href="https://static1-ssl.dmcdn.net/images/neon/favicons/manifest.json.vb58fcfa7628c92052" />
-  <meta name="msapplication-config" content="https://static1-ssl.dmcdn.net/images/neon/favicons/browserconfig.xml.v653d077300a12f092" />
-
-      <meta property="og:site_name" content="Dailymotion"  />
-      <meta property="og:url" content="https://www.dailymotion.com/video/x5tvjrg"  />
-      <meta property="og:type" content="video"  />
-      <meta property="og:title" content="activar camtasia 9 nuevo método sin activador ni programas 2017 - Vídeo Dailymotion"  />
-      <meta property="og:description" content="descargar archivo: http://ouo.io/FwNSbv"  />
-      <meta property="og:image" content="https://s2-ssl.dmcdn.net/lDB-8/526x297-Kft.jpg"  />
-      <meta property="og:image:secure_url" content="https://s2-ssl.dmcdn.net/lDB-8/526x297-Kft.jpg"  />
-      <meta property="og:image:type" content="image/jpg"  />
