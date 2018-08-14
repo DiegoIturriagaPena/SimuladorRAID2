@@ -79,7 +79,7 @@ public class VentanaPrincipal extends Stage implements EventHandler<Event> {
         this.setScene(scene);
         this.doTop();
         this.doCenter();
-        this.setTitle("Raid Simulator");
+        this.setTitle("Raid Simulator / Ariel Cornejo - Diego Iturriaga");
         this.setOnCloseRequest(new EventHandler<WindowEvent>() {
             public void handle(WindowEvent we) {
                 serializar();
