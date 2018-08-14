@@ -15,6 +15,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 
 /**
  *
@@ -177,14 +179,42 @@ public class Raid0 {
     }
     
     public String reconstruir(String nombreArchivo){
-        
-        
-        return "";
+        String textoReconstruido = "";
+        ArrayList<String> Striping1 = new ArrayList<>();
+        ArrayList<String> Striping2 = new ArrayList<>();
+        ArrayList<String> Striping3 = new ArrayList<>();
+        ArrayList<String> Striping4 = new ArrayList<>();
+        try{
+            Striping1 = this.abrirArchivo("RAID0_1\\Striping1"+nombreArchivo+".txt");
+            Striping2 = this.abrirArchivo("RAID0_2\\Striping2"+nombreArchivo+".txt");
+            Striping3 = this.abrirArchivo("RAID0_1\\Striping3"+nombreArchivo+".txt");
+            Striping4 = this.abrirArchivo("RAID0_2\\Striping4"+nombreArchivo+".txt");
+            for (int i = 0; i < Striping1.size(); i++) {
+                textoReconstruido = textoReconstruido + Striping1.get(i)+"\n";
+            }
+            for (int i = 0; i < Striping2.size(); i++) {
+                textoReconstruido = textoReconstruido + Striping2.get(i)+"\n";
+            }
+            for (int i = 0; i < Striping3.size(); i++) {
+                textoReconstruido = textoReconstruido + Striping3.get(i)+"\n";
+            }
+            for (int i = 0; i < Striping4.size(); i++) {
+                textoReconstruido = textoReconstruido + Striping4.get(i)+"\n";
+            }
+        }catch(NullPointerException e){
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Error");
+            alert.setContentText("No se encuentra una de las segmentaciones.");
+            alert.showAndWait();
+        }
+
+        return textoReconstruido;
     }
     
     private ArrayList<String> abrirArchivo(String nombre)
     {
-        ArrayList<String> lineas = null;
+        ArrayList<String> lineas = new ArrayList<>();
         File file = new File ("RAID0\\" +nombre);
         FileReader in = null;
         try {
