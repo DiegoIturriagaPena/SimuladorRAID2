@@ -1,0 +1,122 @@
+
+----------------------------------------------------------------------------------------------------------
+Router:
+
+Router> enable //Acceder al modo privilegiado (EXEC). (si se ingresa solo: en, se reconoce el comando).
+
+Router# erase startup-config //Elimina la configuracion del dispositivo.
+
+Router# reload //Se recargan el dispositivo, si aparece la opcion de AutoInstall, rechazar.
+
+Router# configure terminal //Para entrar la configuracion del dispositivo.
+
+El comando anterior deberia dejar los siguiente:
+Router(config)#
+
+Router(config)# exit //En este caso para salir de la configuracion.
+
+Router# ? //Lista de comandos se visualizan. Si aparece el mensaje --More-- al final, presionar BARRA ESPACIADORA para
+					     visualizar el resto de comandos o ENTER para ver SOLO la siguiente linea.
+
+Router(config)# hostname <nombre> //Este comando es para renombrar el dispositivo actual. En <nombre> se ingresa el nombre
+				    deseado para el dispositivo. Ejemplo:
+Router(config)# hostname R1 ==> R1(config)#
+
+Mantendremos el nombre modificado del comando anterior para los siguientes ejemplos.
+
+R1(config)# no ip domain-lookup //Desactiva la busqueda de DNS del dispositvo.
+
+R1(config)# enable secret class //Contrase�a para entrar el modo EXEC, en este caso la clave es "class".
+
+R1(config)# no enable password //Para eliminar el comando, ya que se configuro anteriormente con "enable secret".
+
+R1(config)# banner motd & //Para configurar un mensaje que aparece en el arranque del dispositivo.
+			    Para terminar o cerrar el mensaje solo hay que insertar un "&".
+
+//Configurar contrase�a para la consola:
+R1(config)# line console 0 //Para entrar al modo configuracion de linea.
+R1(config-line)# password cisco //Asigna la clave, en este caso la clave es "cisco".
+R1(config-line)# login //Ni idea.
+R1(config-line)# exit //Para salir del modo configuracion de linea.
+R1(config)#
+
+//Configurar contrase�a para linea de terminal virtual (telnet):
+R1(config)# line vty 0 4
+R1(config-line)# password cisco //Asigna la clave, en este caso la clave es "cisco".
+R1(config-line)# login //Ni idea.
+R1(config-line)# exit //Para salir del modo configuracion de linea.
+R1(config)#
+
+//Configurar interfaz FastEthernet:
+R1(config)# interface fastethernet <puerto>  //Para ingresar al modo configuracion de la interfaz. En <puerto> va 0/0 o 2/0 por ejemplo.			  
+R1(config-if)# ip address <direccionIp> <mascara> //Para asignar la ip y la mascara.
+R1(config-if)# no shutdown //Para encender el puerto.
+R1(config-if)# description R1 LAN //Dar una descripcion a la interfaz
+
+//Configurar interfaz Serial:
+R1(config-if)# interface serial <puerto>  //Para ingresar al modo configuracion de la interfaz. En <puerto> va 0/0 o 2/0 por ejemplo.			  
+R1(config-if)# ip address <direccionIp> <mascara> //Para asignar la ip y la mascara.
+R1(config-if)# clock rate 64000  //Para asignar el tiempo del relog se usa en el lado DCE
+R1(config-if)# no shutdown //Para encender el puerto.
+R1(config-if)# description Link to R2 //Dar una descripcion a la interfaz.
+
+R1(config-if)#end //paara regresar al EXEC privilegiado.
+R1#
+
+//Guardar Configuracion del Dispositivo (R1):
+R1# copy running-config startup-config
+
+
+//Comandos para mostrar info:
+
+R1# show running-config
+
+R1# show startup-config
+
+R1# show interfaces fastEthernet <puerto>
+
+R1# show version
+
+R1# show ip interface brief
+
+R1# ping <ip>
+
+R1# ping //Para configurar diferentes variables para hacer ping.
+
+R1# traceroute <ip>
+
+En la consola de un equipo (En packet tracer)
+
+C:\> ping <ip>
+
+C:\> ping <ip> -n <valor numerico>
+
+C:\> tracert <ip>
+
+// Agregar a la tabla de ruteo estatica
+Router(config)# ip route destination_network_# [subnet_mask] IP_address_of_next_hop_neighbor // Se configura una direccion por el sgte salto
+Router(config)# ip route destination_network_# [subnet_mask] exit-interface // Se configura una direccion por la interfaz de salida
+
+//Routa estatica por defecto: El router utiliza la ruta estatica por defecto cuando no existe una ruta mejor y mas especifica a un destino.
+R1(config)# ip route 0.0.0.0 0.0.0.0 <sgte-salto> // Si tiene paquetes para enviar que no pertenecen a ninguna red conectada a R1 envia los paquetes pro la ruta por defecto.
+
+//Configurar RIPV1: Con clase 
+R1(config)# no router rip // Elimina los comandos de configuracion RIP
+
+R1(config)# router rip
+R1(config-router)# network <ip-de-la-red>
+R1(config-router)# passive-interface <interface> // Le dice al router que no envie actualizaciones de la table de enrutamiento por esta ruta.
+R1(config-router)# redistribute static //Envia las rutas obtenidas por otro protocolo, en este caso static. Opcional
+R1(config-router)# end //Salir al menu privilegiado
+
+R1# show ip route
+R1# show ip protocols
+R1# debug ip rip// Se visualian los mensajes que se envian con RIP
+R1# undebug all // Detiene el debuger
+
+//RIPV2: Sin clase 
+R1(config)# router rip
+R1(config-router)# version 2
+R1(config-router)# no auto-summary //Anuncia la red con clase a sus vecinos, incluso si hay solo una red con clase conectada a ese router.
+R1(config-router)# network <ip-de-la-red> //Se publican las redes conectadas directamente
+
