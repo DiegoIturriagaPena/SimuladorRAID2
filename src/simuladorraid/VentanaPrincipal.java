@@ -6,7 +6,6 @@
 package simuladorraid;
 
 
-import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -32,13 +31,14 @@ import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.ToolBar;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
-import javax.swing.event.ChangeEvent;
 
 /**
  *
@@ -46,6 +46,7 @@ import javax.swing.event.ChangeEvent;
  */
 public class VentanaPrincipal extends Stage implements EventHandler<Event> {
     private BorderPane root;
+    //Botones para raid
     private Button Abrir;
     private Button raid0;
     private Button raid1;
@@ -54,7 +55,17 @@ public class VentanaPrincipal extends Stage implements EventHandler<Event> {
     private Button raid4;
     private Button raid5;
     private Button raid6;
+    //Botones para mostrar raid
+    private Button mostrar0;
+    private Button mostrar1;
+    private Button mostrar2;
+    private Button mostrar3;
+    private Button mostrar4;
+    private Button mostrar5;
+    private Button mostrar6;
+    //Aqui term
     private ComboBox archivos;
+    private TextArea textoLeido;
     ArrayList<Archivo> archivosCargados;
     int actual;
     public VentanaPrincipal() {
@@ -62,7 +73,7 @@ public class VentanaPrincipal extends Stage implements EventHandler<Event> {
         this.archivosCargados = new ArrayList<>();
         this.desarializar();
         this.root = new BorderPane();
-        Scene scene = new Scene (root,960,542);
+        Scene scene = new Scene (root,716,352);
         this.setScene(scene);
         this.doTop();
         this.doCenter();
@@ -114,6 +125,7 @@ public class VentanaPrincipal extends Stage implements EventHandler<Event> {
             Raid0 raid0 = new Raid0(this.archivosCargados.get(actual));
             raid0.procesarArchivoRaid0();
             this.raid0.setDisable(true);
+            this.mostrar0.setDisable(false);
             this.archivosCargados.get(actual).agregarRaidHecho("0");
         }
         
@@ -122,6 +134,7 @@ public class VentanaPrincipal extends Stage implements EventHandler<Event> {
             Raid1 raid1 = new Raid1(this.archivosCargados.get(actual));
             raid1.procesarArchivoRaid1();
             this.raid1.setDisable(true);
+            this.mostrar1.setDisable(false);
             this.archivosCargados.get(actual).agregarRaidHecho("1");
         }
         
@@ -130,6 +143,7 @@ public class VentanaPrincipal extends Stage implements EventHandler<Event> {
             Raid5 raid5 = new Raid5(this.archivosCargados.get(actual));
             raid5.procesarArchivoRaid5();
             this.raid5.setDisable(true);
+            this.mostrar5.setDisable(false);
             this.archivosCargados.get(actual).agregarRaidHecho("5");
         }
         
@@ -138,7 +152,45 @@ public class VentanaPrincipal extends Stage implements EventHandler<Event> {
             Raid6 raid6 = new Raid6(this.archivosCargados.get(actual));
             raid6.procesarArchivoRaid6();
             this.raid6.setDisable(true);
+            this.mostrar6.setDisable(false);
             this.archivosCargados.get(actual).agregarRaidHecho("6");
+        }
+        ///Mostar texto
+        if(event.getSource() == this.mostrar0 && event instanceof ActionEvent)
+        {
+            Archivo archivo = this.archivosCargados.get(actual);
+            //String aux = this.reconstruir(archivo.getNombre(),0);
+            
+        }
+        if(event.getSource() == this.mostrar1 && event instanceof ActionEvent)
+        {
+            Archivo archivo = this.archivosCargados.get(actual);
+            //String aux = this.reconstruir(archivo.getNombre(),1);
+            
+        }
+        if(event.getSource() == this.mostrar3 && event instanceof ActionEvent)
+        {
+            Archivo archivo = this.archivosCargados.get(actual);
+            //String aux = this.reconstruir(archivo.getNombre(),3);
+            
+        }
+        if(event.getSource() == this.mostrar4 && event instanceof ActionEvent)
+        {
+            Archivo archivo = this.archivosCargados.get(actual);
+            String aux = "";
+            
+        }
+        if(event.getSource() == this.mostrar5 && event instanceof ActionEvent)
+        {
+            Archivo archivo = this.archivosCargados.get(actual);
+            String aux = "";
+            
+        }
+        if(event.getSource() == this.mostrar6 && event instanceof ActionEvent)
+        {
+            Archivo archivo = this.archivosCargados.get(actual);
+            String aux = "";
+            
         }
     }
 
@@ -153,6 +205,7 @@ public class VentanaPrincipal extends Stage implements EventHandler<Event> {
     }
 
     private void doCenter() {
+        HBox columnas = new HBox();
         VBox botones = new VBox();
         botones.setSpacing(10);
         botones.setPadding(new Insets(5,5,5,10));
@@ -169,7 +222,7 @@ public class VentanaPrincipal extends Stage implements EventHandler<Event> {
         this.raid3.addEventHandler(EventType.ROOT, this);
         this.raid3.setDisable(true);
         this.raid4 = new Button("Raid 4");
-        this.addEventHandler(EventType.ROOT, this);
+        this.raid4.addEventHandler(EventType.ROOT, this);
         this.raid4.setDisable(true);
         this.raid5 = new Button("Raid 5");
         this.raid5.addEventHandler(EventType.ROOT, this);
@@ -177,10 +230,47 @@ public class VentanaPrincipal extends Stage implements EventHandler<Event> {
         this.raid6 = new Button("Raid 6");
         this.raid6.addEventHandler(EventType.ROOT, this);
         this.raid6.setDisable(true);
+        this.textoLeido= new TextArea();
+        this.textoLeido.setEditable(false);
+        this.textoLeido.setPrefWidth(503);
+        this.textoLeido.setPrefHeight(284);
+        
         this.rellenarComboBox();
        
         botones.getChildren().addAll(this.raid0,this.raid1,this.raid2,this.raid3,this.raid4,this.raid5,this.raid6,this.archivos);
-        this.root.setCenter(botones);
+        VBox botonMostrar = new VBox();
+        this.mostrar0 = new Button("mostrar");
+        this.mostrar0.addEventHandler(EventType.ROOT, this);
+        this.mostrar0.setDisable(true);
+        this.mostrar1 = new Button("mostrar");
+        this.mostrar1.addEventHandler(EventType.ROOT, this);
+        this.mostrar1.setDisable(true);
+        this.mostrar2 = new Button("mostrar");
+        this.mostrar2.addEventHandler(EventType.ROOT, this);
+        this.mostrar2.setDisable(true);
+        this.mostrar3 = new Button("mostrar");
+        this.mostrar3.addEventHandler(EventType.ROOT, this);
+        this.mostrar3.setDisable(true);
+        this.mostrar4 = new Button("mostrar");
+        this.mostrar4.addEventHandler(EventType.ROOT, this);
+        this.mostrar4.setDisable(true);
+        this.mostrar5 = new Button("mostrar");
+        this.mostrar5.addEventHandler(EventType.ROOT, this);
+        this.mostrar5.setDisable(true);
+        this.mostrar6 = new Button("mostrar");
+        this.mostrar6.addEventHandler(EventType.ROOT, this);
+        this.mostrar6.setDisable(true);
+        botonMostrar.getChildren().addAll(this.mostrar0,this.mostrar1,this.mostrar2,this.mostrar3,this.mostrar4,this.mostrar5,this.mostrar6);
+        botonMostrar.setSpacing(10);
+        botonMostrar.setPadding(new Insets(5,5,5,30));
+        columnas.setSpacing(10);
+        columnas.setPrefHeight(300);
+        VBox texto = new VBox();
+        texto.setPrefHeight(300);
+        texto.getChildren().add(this.textoLeido);
+        columnas.getChildren().addAll(botones,botonMostrar,texto);
+        
+        this.root.setCenter(columnas);
         
         
         
@@ -284,24 +374,31 @@ public class VentanaPrincipal extends Stage implements EventHandler<Event> {
             {
                 case "0":
                     this.raid0.setDisable(true);
+                    this.mostrar0.setDisable(false);
                     break;
                 case "1":
                     this.raid1.setDisable(true);
+                    this.mostrar1.setDisable(false);
                     break;
                 case "2":
                     this.raid2.setDisable(true);
+                    this.mostrar2.setDisable(false);
                     break;
                 case "3":
                     this.raid3.setDisable(true);
+                    this.mostrar3.setDisable(false);
                     break;
                 case "4":
                     this.raid4.setDisable(true);
+                    this.mostrar4.setDisable(false);
                     break;
                 case "5":
                     this.raid5.setDisable(true);
+                    this.mostrar5.setDisable(false);
                     break;
                 case "6":
                     this.raid6.setDisable(true);
+                    this.mostrar6.setDisable(false);
                     break;
             }
         }
