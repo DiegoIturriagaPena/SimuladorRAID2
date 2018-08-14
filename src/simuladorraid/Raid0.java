@@ -28,6 +28,9 @@ public class Raid0 {
         this.archivo4 = new ArrayList<>();
         this.archivoOriginal = archivoOriginal;
     }
+    
+    public Raid0() {
+    }
 
     public int cantidadLineasArchivo1() {
         return archivo1.size();
@@ -165,5 +168,11 @@ public class Raid0 {
         for (int i = 0; i < this.cantidadLineasArchivo2(); i++) {
             System.out.println(this.obtenerLineaArchivo2(i));
         }
+    }
+    
+    public String reconstruir(String nombreArchivo){
+        
+        
+        return "";
     }
 }
