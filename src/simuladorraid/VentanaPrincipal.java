@@ -73,7 +73,7 @@ public class VentanaPrincipal extends Stage implements EventHandler<Event> {
         this.archivosCargados = new ArrayList<>();
         this.desarializar();
         this.root = new BorderPane();
-        Scene scene = new Scene (root,716,352);
+        Scene scene = new Scene (root,871,352);
         this.setScene(scene);
         this.doTop();
         this.doCenter();
@@ -117,6 +117,8 @@ public class VentanaPrincipal extends Stage implements EventHandler<Event> {
                }
                this.archivosCargados.add(archivo);
                actual = this.archivosCargados.size()-1;// se carga el archivo actual
+               this.rellenarComboBox(2);
+               this.archivos.getSelectionModel().selectLast();
            }
         }
         if(event.getSource() == this.raid0 && event instanceof ActionEvent)
@@ -239,8 +241,7 @@ public class VentanaPrincipal extends Stage implements EventHandler<Event> {
         this.textoLeido.setPrefWidth(503);
         this.textoLeido.setPrefHeight(284);
         
-        this.rellenarComboBox();
-       
+        this.rellenarComboBox(1);
         botones.getChildren().addAll(this.raid0,this.raid1,this.raid2,this.raid3,this.raid4,this.raid5,this.raid6,this.archivos);
         VBox botonMostrar = new VBox();
         this.mostrar0 = new Button("mostrar");
@@ -274,6 +275,8 @@ public class VentanaPrincipal extends Stage implements EventHandler<Event> {
         texto.getChildren().add(this.textoLeido);
         columnas.getChildren().addAll(botones,botonMostrar,texto);
         
+        this.archivos.getSelectionModel().selectFirst();
+       
         this.root.setCenter(columnas);
         
         
@@ -329,10 +332,17 @@ public class VentanaPrincipal extends Stage implements EventHandler<Event> {
         
     }
     
-    public void rellenarComboBox()
+    public void rellenarComboBox(int vez)
     {
+        
         ObservableList<SimpleStringProperty> nombres = FXCollections.observableArrayList();
-        this.archivos = new ComboBox();
+        if(vez==1){
+            this.archivos = new ComboBox();
+        }
+        else
+        {
+            this.archivos.getItems().clear();
+        }
         for(int i =0;i<this.archivosCargados.size();i++)
         {
             SimpleStringProperty aux = new SimpleStringProperty(this.archivosCargados.get(i).getNombre());
