@@ -17,11 +17,15 @@ import java.util.ArrayList;
 public class Raid0 {
     private ArrayList<String> archivo1;
     private ArrayList<String> archivo2;
+    private ArrayList<String> archivo3;
+    private ArrayList<String> archivo4;
     private Archivo archivoOriginal;
 
     public Raid0(Archivo archivoOriginal) {
         this.archivo1 = new ArrayList<>();
         this.archivo2 = new ArrayList<>();
+        this.archivo3 = new ArrayList<>();
+        this.archivo4 = new ArrayList<>();
         this.archivoOriginal = archivoOriginal;
     }
 
@@ -57,17 +61,62 @@ public class Raid0 {
         return archivo2.remove(index);
     }
     
+    public int cantidadLineasArchivo3() {
+        return archivo3.size();
+    }
+
+    public String obtenerLineaArchivo3(int index) {
+        return archivo3.get(index);
+    }
+
+    public boolean agregarLineaArchivo3(String e) {
+        return archivo3.add(e);
+    }
+
+    public String eliminarLineaArchivo3(int index) {
+        return archivo3.remove(index);
+    }
+    
+    public int cantidadLineasArchivo4() {
+        return archivo4.size();
+    }
+
+    public String obtenerLineaArchivo4(int index) {
+        return archivo4.get(index);
+    }
+
+    public boolean agregarLineaArchivo4(String e) {
+        return archivo4.add(e);
+    }
+
+    public String eliminarLineaArchivo4(int index) {
+        return archivo4.remove(index);
+    }
+    
     public void procesarArchivoRaid0(){
-        for (int i = 0; i < this.archivoOriginal.size(); i++) {
-            String linea = this.archivoOriginal.get(i);
-            if(i%2==0){
-                this.agregarLineaArchivo1(linea);
-            }
-            else{
-                this.agregarLineaArchivo2(linea);
-            }
-            this.CopiarAlDiscoDuro();
+        int cont = 0;
+        int limite = this.archivoOriginal.size()/4;
+        while(cont<limite){
+            String linea = this.archivoOriginal.get(cont);
+            this.agregarLineaArchivo1(linea);
+            cont++;
         }
+        while(cont<(2*limite)){
+            String linea = this.archivoOriginal.get(cont);
+            this.agregarLineaArchivo2(linea);
+            cont++;
+        }
+        while(cont<(3*limite)){
+            String linea = this.archivoOriginal.get(cont);
+            this.agregarLineaArchivo3(linea);
+            cont++;
+        }
+        while(cont<this.archivoOriginal.size()){
+            String linea = this.archivoOriginal.get(cont);
+            this.agregarLineaArchivo4(linea);
+            cont++;
+        }
+        this.CopiarAlDiscoDuro();
     }
     
     public void CopiarAlDiscoDuro(){
@@ -84,6 +133,22 @@ public class Raid0 {
             BufferedWriter out = new BufferedWriter(new FileWriter("RAID0\\RAID0_2\\Striping2" +  archivoOriginal.getNombre() + ".txt"));
             for (int i = 0; i < this.archivo2.size(); i++) {
                 out.write(this.archivo2.get(i));
+                out.newLine();
+            }
+            out.close();
+        } catch (IOException e) {}
+        try {
+            BufferedWriter out = new BufferedWriter(new FileWriter("RAID0\\RAID0_1\\Striping3" +  archivoOriginal.getNombre() + ".txt"));
+            for (int i = 0; i < this.archivo3.size(); i++) {
+                out.write(this.archivo3.get(i));
+                out.newLine();
+            }
+            out.close();
+        } catch (IOException e) {}
+        try {
+            BufferedWriter out = new BufferedWriter(new FileWriter("RAID0\\RAID0_2\\Striping4" +  archivoOriginal.getNombre() + ".txt"));
+            for (int i = 0; i < this.archivo4.size(); i++) {
+                out.write(this.archivo4.get(i));
                 out.newLine();
             }
             out.close();
