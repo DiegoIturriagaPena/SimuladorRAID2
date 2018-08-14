@@ -29,6 +29,7 @@ import javafx.event.EventHandler;
 import javafx.event.EventType;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
@@ -115,10 +116,22 @@ public class VentanaPrincipal extends Stage implements EventHandler<Event> {
                    String aux = (String)datos[i];
                    archivo.add(aux);
                }
-               this.archivosCargados.add(archivo);
-               actual = this.archivosCargados.size()-1;// se carga el archivo actual
-               this.rellenarComboBox(2);
-               this.archivos.getSelectionModel().selectLast();
+               if(!this.coincidenciArchivo(archivo.getNombre()))
+               {
+                   this.archivosCargados.add(archivo);
+                   actual = this.archivosCargados.size()-1;// se carga el archivo actual
+                   this.rellenarComboBox(2);
+                   this.archivos.getSelectionModel().selectLast();
+               }
+               else
+               {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.setHeaderText("Error");
+                    alert.setContentText("Archivo ya cargado");
+                    alert.showAndWait();
+               }
+               
            }
         }
         if(event.getSource() == this.raid0 && event instanceof ActionEvent)
@@ -399,6 +412,19 @@ public class VentanaPrincipal extends Stage implements EventHandler<Event> {
         this.deshabilitarRaidHechos();
     }
     
+    public boolean coincidenciArchivo(String nombre)
+    {
+        boolean encontrado=false;
+        for(int i=0;i<this.archivosCargados.size() && !encontrado;i++)
+        {
+            if(nombre.compareTo(this.archivosCargados.get(i).getNombre())==0)
+            {
+                return true;
+            }
+        }
+        
+        return encontrado;
+    }
     public void deshabilitarRaidHechos()
     {
         Archivo archivo = this.archivosCargados.get(actual);
