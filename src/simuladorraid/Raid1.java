@@ -63,7 +63,7 @@ public class Raid1 {
     }
     
     public String reconstruir(String nombreArchivo){
-        String textoReconstruido = "";
+        String textoReconstruido = ""+nombreArchivo+" - RAID1 (Este mensaje NO forma parte del archivo.)\n";
         ArrayList<String> Mirror1 = new ArrayList<>();
         ArrayList<String> Mirror2 = new ArrayList<>();
 

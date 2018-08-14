@@ -199,7 +199,7 @@ public class Raid3 {
     }
     
     public String reconstruir(Archivo archivo){ 
-        String textoReconstruido = "";
+        String textoReconstruido = ""+archivo.getNombre()+" - RAID3 (Este mensaje NO forma parte del archivo.)\n";
         ArrayList<String> bytes1 = new ArrayList<>();
         ArrayList<String> bytes2 = new ArrayList<>();
         ArrayList<String> paridad1 = new ArrayList<>();

@@ -78,7 +78,7 @@ public class VentanaPrincipal extends Stage implements EventHandler<Event> {
         this.setScene(scene);
         this.doTop();
         this.doCenter();
-        this.setTitle("Raid Simulator: arcade triple omega mata pulgas y garrapatas ");
+        this.setTitle("Raid Simulator");
         this.setOnCloseRequest(new EventHandler<WindowEvent>() {
             public void handle(WindowEvent we) {
                 serializar();
@@ -153,6 +153,15 @@ public class VentanaPrincipal extends Stage implements EventHandler<Event> {
             this.archivosCargados.get(actual).agregarRaidHecho("1");
         }
         
+        if(event.getSource() == this.raid2 && event instanceof ActionEvent)
+        {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Información");
+            alert.setHeaderText("RAID2");
+            alert.setContentText("Función No Implementada.");
+            alert.showAndWait();
+        }
+        
         if(event.getSource() == this.raid3 && event instanceof ActionEvent)
         {
             Raid3 raid3 = new Raid3(this.archivosCargados.get(actual));
@@ -215,19 +224,25 @@ public class VentanaPrincipal extends Stage implements EventHandler<Event> {
         if(event.getSource() == this.mostrar4 && event instanceof ActionEvent)
         {
             Archivo archivo = this.archivosCargados.get(actual);
-            String aux = "";
+            Raid4 raidDisk = new Raid4();
+            String aux = raidDisk.reconstruir(archivo);
+            this.textoLeido.setText(aux);
             
         }
         if(event.getSource() == this.mostrar5 && event instanceof ActionEvent)
         {
             Archivo archivo = this.archivosCargados.get(actual);
-            String aux = "";
+            Raid5 raidDisk = new Raid5();
+            String aux = raidDisk.reconstruir(archivo);
+            this.textoLeido.setText(aux);
             
         }
         if(event.getSource() == this.mostrar6 && event instanceof ActionEvent)
         {
             Archivo archivo = this.archivosCargados.get(actual);
-            String aux = "";
+            Raid6 raidDisk = new Raid6();
+            String aux = raidDisk.reconstruir(archivo);
+            this.textoLeido.setText(aux);
             
         }
     }
@@ -357,7 +372,6 @@ public class VentanaPrincipal extends Stage implements EventHandler<Event> {
         try {
             FileInputStream fileIn = new FileInputStream("respaldo\\respaldo.ser");
             ObjectInputStream in = new ObjectInputStream(fileIn);
-            System.out.println("" + this.archivosCargados.size());
             Object nuevo = in.readObject();
             ArrayList<Archivo> new1 = (ArrayList)nuevo;
             this.archivosCargados = (ArrayList)nuevo;
@@ -395,8 +409,6 @@ public class VentanaPrincipal extends Stage implements EventHandler<Event> {
                 @Override
                 public void changed(ObservableValue ov, Object arg1,
                         Object arg2) {
-                        System.out.println("fuck");
-                        System.out.println("" + (String)ov.getValue());
                         buscarArchivo((String)ov.getValue());
 
                     }

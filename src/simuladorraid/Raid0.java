@@ -179,7 +179,7 @@ public class Raid0 {
     }
     
     public String reconstruir(String nombreArchivo){
-        String textoReconstruido = "";
+        String textoReconstruido = ""+nombreArchivo+" - RAID0 (Este mensaje NO forma parte del archivo.)\n";
         ArrayList<String> Striping1 = new ArrayList<>();
         ArrayList<String> Striping2 = new ArrayList<>();
         ArrayList<String> Striping3 = new ArrayList<>();

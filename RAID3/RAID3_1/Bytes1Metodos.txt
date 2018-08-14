@@ -1,4 +1,0 @@
-ObtenerRequisitosUsuario RaimundoVazquez ProyectoController.cs
-ObtenerReferencias ProyectoController.cs
-ObtenerRequisito ProyectoController.cs
-ObtenerProyectoPorId PatricioQuezada Proyecto.cs
