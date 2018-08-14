@@ -227,7 +227,7 @@ public class Raid4 {
     }
     
     public String reconstruir(Archivo archivo){
-        String textoReconstruido = "";
+        String textoReconstruido = ""+archivo.getNombre()+" - RAID4 (Este mensaje NO forma parte del archivo.)\n";
         ArrayList<String> fourth1 = new ArrayList<>();
         ArrayList<String> fourth2 = new ArrayList<>();
         ArrayList<String> fourth3 = new ArrayList<>();

@@ -324,7 +324,7 @@ public class Raid5 {
     }
     
     public String reconstruir(Archivo archivo){
-        String textoReconstruido = "";
+        String textoReconstruido = ""+archivo.getNombre()+" - RAID5 (Este mensaje NO forma parte del archivo.)\n";
         ArrayList<String> halfFile1 = new ArrayList<>();
         ArrayList<String> halfFile2 = new ArrayList<>();
         ArrayList<String> paridad = new ArrayList<>();

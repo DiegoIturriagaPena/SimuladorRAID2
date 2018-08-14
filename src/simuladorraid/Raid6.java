@@ -505,7 +505,7 @@ public class Raid6 {
     }
     
     public String reconstruir(Archivo archivo){
-        String textoReconstruido = "";
+        String textoReconstruido = ""+archivo.getNombre()+" - RAID6 (Este mensaje NO forma parte del archivo.)\n";
         ArrayList<String> third1 = new ArrayList<>();
         ArrayList<String> third2 = new ArrayList<>();
         ArrayList<String> third3 = new ArrayList<>();

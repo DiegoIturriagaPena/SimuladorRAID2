@@ -78,7 +78,7 @@ public class VentanaPrincipal extends Stage implements EventHandler<Event> {
         this.setScene(scene);
         this.doTop();
         this.doCenter();
-        this.setTitle("Raid Simulator: arcade triple omega mata pulgas y garrapatas ");
+        this.setTitle("Raid Simulator");
         this.setOnCloseRequest(new EventHandler<WindowEvent>() {
             public void handle(WindowEvent we) {
                 serializar();
@@ -151,6 +151,15 @@ public class VentanaPrincipal extends Stage implements EventHandler<Event> {
             this.raid1.setDisable(true);
             this.mostrar1.setDisable(false);
             this.archivosCargados.get(actual).agregarRaidHecho("1");
+        }
+        
+        if(event.getSource() == this.raid2 && event instanceof ActionEvent)
+        {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Información");
+            alert.setHeaderText("RAID2");
+            alert.setContentText("Función No Implementada.");
+            alert.showAndWait();
         }
         
         if(event.getSource() == this.raid3 && event instanceof ActionEvent)
@@ -363,7 +372,6 @@ public class VentanaPrincipal extends Stage implements EventHandler<Event> {
         try {
             FileInputStream fileIn = new FileInputStream("respaldo\\respaldo.ser");
             ObjectInputStream in = new ObjectInputStream(fileIn);
-            System.out.println("" + this.archivosCargados.size());
             Object nuevo = in.readObject();
             ArrayList<Archivo> new1 = (ArrayList)nuevo;
             this.archivosCargados = (ArrayList)nuevo;
@@ -401,8 +409,6 @@ public class VentanaPrincipal extends Stage implements EventHandler<Event> {
                 @Override
                 public void changed(ObservableValue ov, Object arg1,
                         Object arg2) {
-                        System.out.println("fuck");
-                        System.out.println("" + (String)ov.getValue());
                         buscarArchivo((String)ov.getValue());
 
                     }
