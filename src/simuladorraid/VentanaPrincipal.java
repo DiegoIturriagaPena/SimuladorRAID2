@@ -293,6 +293,17 @@ public class VentanaPrincipal extends Stage implements EventHandler<Event> {
         
     }
     
+    public void desactivarMostrar()
+    {
+        this.mostrar0.setDisable(true);
+        this.mostrar1.setDisable(true);
+        this.mostrar2.setDisable(true);
+        this.mostrar3.setDisable(true);
+        this.mostrar4.setDisable(true);
+        this.mostrar5.setDisable(true);
+        this.mostrar6.setDisable(true);
+        
+    }
     public void activarBotones()
     {
         this.raid0.setDisable(false);
@@ -346,31 +357,30 @@ public class VentanaPrincipal extends Stage implements EventHandler<Event> {
     {
         
         ObservableList<SimpleStringProperty> nombres = FXCollections.observableArrayList();
-        if(vez==1){
+        if(vez!=1){
+            this.archivos.getItems().add(this.archivosCargados.get(actual).getNombre());
+        }
+        else{
             this.archivos = new ComboBox();
-        }
-        else
-        {
-            this.archivos.getItems().clear();
-        }
-        for(int i =0;i<this.archivosCargados.size();i++)
-        {
-            SimpleStringProperty aux = new SimpleStringProperty(this.archivosCargados.get(i).getNombre());
-            this.archivos.getItems().add(aux.getValue());
-            
-        }
-        this.archivos.valueProperty().addListener(new ChangeListener() {
-            @SuppressWarnings("rawtypes")
-            @Override
-            public void changed(ObservableValue ov, Object arg1,
-                    Object arg2) {
+            for(int i =0;i<this.archivosCargados.size();i++)
+            {
+                SimpleStringProperty aux = new SimpleStringProperty(this.archivosCargados.get(i).getNombre());
+                this.archivos.getItems().add(aux.getValue());
 
-                    System.out.println("" + (String)ov.getValue());
-                    buscarArchivo((String)ov.getValue());
-                    
-                }
-            }    
-        );
+            }
+            this.archivos.valueProperty().addListener(new ChangeListener() {
+                @SuppressWarnings("rawtypes")
+                @Override
+                public void changed(ObservableValue ov, Object arg1,
+                        Object arg2) {
+                        System.out.println("fuck");
+                        System.out.println("" + (String)ov.getValue());
+                        buscarArchivo((String)ov.getValue());
+
+                    }
+                }    
+            );
+        }
       
         
     }
@@ -384,6 +394,7 @@ public class VentanaPrincipal extends Stage implements EventHandler<Event> {
                 this.actual=i;
             }
         }
+        this.desactivarMostrar();
         this.activarBotones();
         this.deshabilitarRaidHechos();
     }
