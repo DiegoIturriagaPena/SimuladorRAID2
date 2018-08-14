@@ -1,0 +1,23 @@
+ speed auto
+ shutdown
+!
+interface Serial2/0
+ ip address 209.165.201.9 255.255.255.252
+!
+interface Serial3/0
+ ip address 209.165.201.6 255.255.255.252
+ clock rate 64000
+!
+interface FastEthernet4/0
+ no ip address
+ shutdown
+!
+interface FastEthernet5/0
+ no ip address
+ shutdown
+!
+ip classless
+!
+ip flow-export version 9
+!
+!

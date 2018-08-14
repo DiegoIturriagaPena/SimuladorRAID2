@@ -1,0 +1,24 @@
+!
+banner motd 
+************************
+!!!ACCESO RESTRINGIDO!!!
+************************
+
+!
+!
+!
+!
+line con 0
+ password cisco
+ login
+!
+line aux 0
+!
+line vty 0 4
+ password cisco
+ login
+!
+!
+!
+end
+

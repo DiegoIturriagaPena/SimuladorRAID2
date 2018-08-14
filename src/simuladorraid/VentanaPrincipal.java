@@ -252,11 +252,22 @@ public class VentanaPrincipal extends Stage implements EventHandler<Event> {
         
         if(event.getSource() == this.raid6 && event instanceof ActionEvent)
         {
-            Raid6 raid6 = new Raid6(this.archivosCargados.get(actual));
-            raid6.procesarArchivoRaid6();
-            this.raid6.setDisable(true);
-            this.mostrar6.setDisable(false);
-            this.archivosCargados.get(actual).agregarRaidHecho("6");
+            if(this.archivosCargados.get(actual).size()>=3)
+            {
+                Raid6 raid6 = new Raid6(this.archivosCargados.get(actual));
+                raid6.procesarArchivoRaid6();
+                this.raid6.setDisable(true);
+                this.mostrar6.setDisable(false);
+                this.archivosCargados.get(actual).agregarRaidHecho("6");
+            }
+            else
+            {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("Error");
+                alert.setContentText("Archivo con menos de 3 lineas");
+                alert.showAndWait();
+            }
         }
         ///Mostar texto
         if(event.getSource() == this.mostrar0 && event instanceof ActionEvent)
