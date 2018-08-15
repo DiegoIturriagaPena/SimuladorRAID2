@@ -386,14 +386,17 @@ public class Raid5 {
         
         try{
             archivo = this.abrirArchivo("RAID5_1\\"+nombre+".txt");
+            return archivo;
         }
         catch(NullPointerException e){
             try{
                 archivo = this.abrirArchivo("RAID5_2\\"+nombre+".txt");
+                return archivo;
             }
             catch (NullPointerException e1){
                 try{
                     archivo = this.abrirArchivo("RAID5_3\\"+nombre+".txt");
+                    return archivo;
                 }
                 catch(NullPointerException e2){
                     Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -404,7 +407,7 @@ public class Raid5 {
                 }
             }
         }
-        return archivo;
+        return null;
     }
     
     private Integer buscarDisco(String nombre){

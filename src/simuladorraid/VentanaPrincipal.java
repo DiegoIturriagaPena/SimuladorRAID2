@@ -85,8 +85,7 @@ public class VentanaPrincipal extends Stage implements EventHandler<Event> {
                 serializar();
           }
         });
-       
-        System.out.println("" +this.archivosCargados.size());
+      
     }
     
     
@@ -231,7 +230,7 @@ public class VentanaPrincipal extends Stage implements EventHandler<Event> {
         
         if(event.getSource() == this.raid5 && event instanceof ActionEvent)
         {
-            if(this.archivosCargados.get(actual).size()>=3)
+            if(this.archivosCargados.get(actual).size()>=2)
             {
                 Raid5 raid5 = new Raid5(this.archivosCargados.get(actual));
                 raid5.procesarArchivoRaid5();
@@ -244,7 +243,7 @@ public class VentanaPrincipal extends Stage implements EventHandler<Event> {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error");
                 alert.setHeaderText("Error");
-                alert.setContentText("Archivo con menos de 3 lineas");
+                alert.setContentText("Archivo con menos de 2 lineas");
                 alert.showAndWait();
             }
             
@@ -434,7 +433,6 @@ public class VentanaPrincipal extends Stage implements EventHandler<Event> {
             out.writeObject(this.archivosCargados);
             out.close();
             fileOut.close();
-            System.out.printf("Datos serializados en \\respaldo\\respaldo.ser");
         }catch (IOException i) {
             i.printStackTrace();
         }
@@ -557,8 +555,4 @@ public class VentanaPrincipal extends Stage implements EventHandler<Event> {
             }
         }
     }
-
-  
-
-   
 }

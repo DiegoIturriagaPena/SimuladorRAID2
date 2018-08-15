@@ -538,7 +538,7 @@ public class Raid6 {
                 
                 for (int i = 0; i < third2.size(); i++) {
                     if(!archivoOriginalA.get(cont).equals(third2.get(i))){
-                        if(cont<archivoOriginalA.size()){
+                        if(cont<(archivoOriginalA.size()/2)){
                             paridad1D.remove(cont);
                             paridad1D.add(cont, "1");
                         }
@@ -591,22 +591,27 @@ public class Raid6 {
         
         try{
             archivo = this.abrirArchivo("RAID6_1\\"+nombre+".txt");
+            return archivo;
         }
         catch(NullPointerException e){
             try{
                 archivo = this.abrirArchivo("RAID6_2\\"+nombre+".txt");
+                return archivo;
             }
             catch (NullPointerException e1){
                 try{
                     archivo = this.abrirArchivo("RAID6_3\\"+nombre+".txt");
+                    return archivo;
                 }
                 catch(NullPointerException e2){
                     try{
                         archivo = this.abrirArchivo("RAID6_4\\"+nombre+".txt");
+                        return archivo;
                     }
                     catch(NullPointerException e3){
                         try{
                             archivo = this.abrirArchivo("RAID6_5\\"+nombre+".txt");
+                            return archivo;
                         }
                         catch(NullPointerException e4){
                             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -619,7 +624,7 @@ public class Raid6 {
                 }
             }
         }
-        return archivo;
+        return null;
     }
     
     private Integer buscarDisco(String nombre){
@@ -627,7 +632,7 @@ public class Raid6 {
         ArrayList<String> archivo = new ArrayList<>();
                 
         try{
-            archivo = this.abrirArchivo("RAID5_1\\"+nombre+".txt");
+            archivo = this.abrirArchivo("RAID6_1\\"+nombre+".txt");
             disco = 1;
         }
         catch(NullPointerException e){

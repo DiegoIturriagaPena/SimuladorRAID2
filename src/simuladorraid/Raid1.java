@@ -101,7 +101,7 @@ public class Raid1 {
         try {
             in = new FileReader(file);
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            
         }
         
         BufferedReader buffer = new BufferedReader(in);
